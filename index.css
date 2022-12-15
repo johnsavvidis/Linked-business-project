@@ -1,7 +1,16 @@
 html, body {
     margin: 0;
-    padding: 0;
+    padding: 5px;
     background-color: lightgreen;
+}
+
+#evolutionButton{
+    padding: 5px;
+}
+
+#search-section{
+    text-align: center;
+    font-weight: bold;
 }
 
 .my-pokedex {

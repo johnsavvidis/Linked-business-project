@@ -3,10 +3,11 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <script src="index.js"></script>
-        <label for="search-bar">Search Pokedex:</label>
-        <input onkeyup="searchPokemon()" type="text"
-        name="search" id="search-bar" placeholder="Search..">
+        <div id="search-section">
+            <label for="search-bar">Search Pokedex:</label>
+            <input onkeyup="searchPokemon()" type="text" name="search" id="search-bar" placeholder="Search..">
+        </div>
         <div id="search-results"></div>
+        <script src="index.js"></script>
     </body>
 </html>
