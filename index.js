@@ -1,3 +1,6 @@
+const searchResults = document.getElementById("search-results")
+const evolutionEl = document.getElementById("evolutionButton")
+
 async function getAllPokemon() {
     let response = await fetch("pokemon.json")
     let data = await response.json()
@@ -15,13 +18,14 @@ function getPokemonHtml(aPokemon) {
         <div class="a-pokemon-stat">Attack: ${aPokemon.base.Attack}</div>
         <div class="a-pokemon-stat">Defense: ${aPokemon.base.Defense}</div>
         <div class="a-pokemon-stat">Speed: ${aPokemon.base.Speed}</div>
+        <button id="evolutionButton">See its evolution!</button>
     </div>`
 }
 
 function getSearchedPokemon(allPokemon, input){
     return allPokemon.map(
         function(aPokemon){
-            if(aPokemon.name === input){
+            if(aPokemon.name.english.toLowerCase() === input.toLowerCase()){
                 return getPokemonHtml(aPokemon)
             }
         }
@@ -30,22 +34,14 @@ function getSearchedPokemon(allPokemon, input){
 
 function searchPokemon(){
     let input = document.getElementById("search-bar").value
+    console.log(input)
     input = input.toLowerCase()
     getAllPokemon().then(allPokemon => {
         const tempHTML = getSearchedPokemon(allPokemon, input)
-        document.getElementById("search-results").innerHTML = `<div class="my-pokedex">
+        searchResults.innerHTML = `<div class="my-pokedex">
             ${tempHTML}
         </div>`
     })
 }
 
-function evolutionOfPokemon(){
-    getAllPokemon().then(allPokemon => {
-        document.getElementById("search-results").innerHTML = `<div class="my-pokedex">
-            ${allPokemon.map(aPokemon => getPokemonHtml(aPokemon)).join('')}
-        </div>`
-    })
-}
-
 searchPokemon()
-evolutionOfPokemon()
